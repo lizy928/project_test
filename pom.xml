@@ -66,7 +66,16 @@
             <version>4.5.2</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
 
+        <dependency>
+            <groupId>com.github.binarywang</groupId>
+            <artifactId>java-emoji-converter</artifactId>
+            <version>0.0.1</version>
+        </dependency>
 
     </dependencies>
 

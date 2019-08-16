@@ -18,6 +18,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -53,10 +54,14 @@ public class HttpService {
             StringEntity entity = new StringEntity(postEntity, Consts.UTF_8);
             httpPost.setEntity(entity);
         }
-        try (CloseableHttpResponse response = httpClient.execute(httpPost)) {
-
-            return handleResponse(response);
+        CloseableHttpResponse response = null;
+        try{
+             response = httpClient.execute(httpPost);
+        }catch (HttpClientErrorException e){
+            String responseContent = e.getResponseBodyAsString();
+            System.out.println(responseContent);
         }
+        return handleResponse(response);
     }
 
     /**
@@ -72,9 +77,14 @@ public class HttpService {
 
         // 装载配置信息
         httpGet.setConfig(config);
-
+        CloseableHttpResponse response = null;
         // 发起请求
-        CloseableHttpResponse response = this.httpClient.execute(httpGet);
+        try{
+            response = this.httpClient.execute(httpGet);
+        }catch (HttpClientErrorException e){
+            String responseContent = e.getResponseBodyAsString();
+            System.out.println(responseContent);
+        }
 
         return handleResponse(response);
     }

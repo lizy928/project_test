@@ -2,6 +2,7 @@ package com.dlion.testproject.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.dlion.testproject.service.HttpService;
+import com.dlion.testproject.util.EmojiUtil;
 import com.dlion.testproject.util.MapUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -24,7 +25,6 @@ import java.util.*;
  * @date 2019/8/1
  */
 @RestController
-@RequestMapping("/weibo")
 public class WeiBoController {
 
     /**
@@ -64,15 +64,18 @@ public class WeiBoController {
 
         JSONObject json = (JSONObject) JSONObject.parse(msg);
 
-        logger.info("收到微博开放平台消息:{}", msg);
+        String text = json.getString("text");
+        System.out.println(text);
+        String result = EmojiUtil.emojiConverterToAlias(text);
+        System.out.println(result);
 
-        sendMessage(json);
+        sendMessage(json, result);
 
         return getResposeImage(json);
     }
 
 
-    public void sendMessage(JSONObject json) throws UnsupportedEncodingException {
+    public void sendMessage(JSONObject json, String text) throws UnsupportedEncodingException {
 
         Map<String, Object> request = new HashMap<>();
         request.put("access_token", access_token);
@@ -81,7 +84,7 @@ public class WeiBoController {
         request.put("save_sender_box", 0);
 
         Map<String, Object> data = new HashMap<>();
-        data.put("text", "主动发送的消息");
+        data.put("text", EmojiUtil.emojiConverterUnicodeStr(":pensive:"));
 
         JSONObject dataJson = new JSONObject(data);
 
@@ -102,7 +105,6 @@ public class WeiBoController {
         } catch (IOException e) {
             logger.error("微博消息发送异常", e);
         }
-
     }
 
 
