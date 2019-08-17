@@ -66,10 +66,8 @@ public class WeiBoController {
 
         String text = json.getString("text");
         System.out.println(text);
-        String result = EmojiUtil.emojiConverterToAlias(text);
-        System.out.println(result);
 
-        sendMessage(json, result);
+        sendMessage(json, text);
 
         return getResposeImage(json);
     }
@@ -84,7 +82,7 @@ public class WeiBoController {
         request.put("save_sender_box", 0);
 
         Map<String, Object> data = new HashMap<>();
-        data.put("text", EmojiUtil.emojiConverterUnicodeStr(":pensive:"));
+        data.put("text", text);
 
         JSONObject dataJson = new JSONObject(data);
 

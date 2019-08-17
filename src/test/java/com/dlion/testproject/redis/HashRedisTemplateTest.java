@@ -150,6 +150,7 @@ public class HashRedisTemplateTest {
         ScanOptions options = ScanOptions.scanOptions().match("DL*").count(Integer.MAX_VALUE).build();
         Cursor<Map.Entry<Object, Object>> scan;
         scan = redisTemplate.opsForHash().scan("testHash", options);
+        System.out.println(scan);
     }
 
 

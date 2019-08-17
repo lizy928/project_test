@@ -1,7 +1,6 @@
 package com.dlion.testproject.util;
 
 import com.dlion.testproject.constant.EmoticonEnum;
-import com.github.binarywang.java.emoji.EmojiConverter;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -12,7 +11,7 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class EmojiUtil {
 
-    private static final EmojiConverter emojiConverter = EmojiConverter.getInstance();
+    //private static final EmojiConverter emojiConverter = EmojiConverter.getInstance();
 
     /**
      * 将emojiStr转为带有表情的字符
@@ -20,9 +19,9 @@ public class EmojiUtil {
      * @param emojiStr 带有emoji表情的文本
      * @return
      */
-    public static String emojiConverterUnicodeStr(String emojiStr) {
-        return emojiConverter.toUnicode(emojiStr);
-    }
+   // public static String emojiConverterUnicodeStr(String emojiStr) {
+        //return emojiConverter.toUnicode(emojiStr);
+    //}
 
     /**
      * 带有表情的字符串转换为编码
@@ -30,9 +29,9 @@ public class EmojiUtil {
      * @param str 表情的字符串
      * @return
      */
-    public static String emojiConverterToAlias(String str) {
-        return emojiConverter.toAlias(str);
-    }
+  //  public static String emojiConverterToAlias(String str) {
+        //return emojiConverter.toAlias(str);
+   // }
 
     /**
      * 处理微信发送的表情
@@ -42,7 +41,7 @@ public class EmojiUtil {
      */
     public static String handleWxEmoticon(String wxMsg) {
 
-        wxMsg = emojiConverterToAlias(wxMsg);
+        wxMsg = "";// emojiConverterToAlias(wxMsg);
 
         for (EmoticonEnum emoticonEnum : EmoticonEnum.values()) {
             if (StringUtils.contains(wxMsg, emoticonEnum.wxEmoticon)) {
@@ -76,7 +75,7 @@ public class EmojiUtil {
                 stringBuilder.append(text);
                 for (EmoticonEnum emoticonEnum : EmoticonEnum.values()) {
                     if (StringUtils.equals(emoji, emoticonEnum.twEmotion)) {
-                        emoji = EmojiUtil.emojiConverterUnicodeStr(emoticonEnum.wxEmoticon);
+                        emoji = ""; //EmojiUtil.emojiConverterUnicodeStr(emoticonEnum.wxEmoticon);
                         stringBuilder.append(emoji);
                     }
                 }
