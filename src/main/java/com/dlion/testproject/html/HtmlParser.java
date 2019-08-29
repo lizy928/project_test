@@ -1,5 +1,6 @@
 package com.dlion.testproject.html;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -151,9 +152,40 @@ public class HtmlParser {
 
         String html = "<div style=\"margin-top:20px\"><strong>美国空中国民警卫队在夏威夷演习</strong></div><div><img src=\"http://cms-bucket.ws.126.net/2019/08/24/bb2bf55e7fac41fb85bcc8e2cffeae69.jpeg\" style=\"width:100%\"/></div><p></p><div style=\"margin-top:20px\"><strong>美军B-52轰炸机挂载水雷 展示布雷能力</strong></div><div><img src=\"http://pic-bucket.ws.126.net/photo/0001/2019-08-24/ENB9FV344T8E0001NOS.jpg\" style=\"width:100%\"/></div><p></p><div style=\"margin-top:20px\"><strong>传统不能丢!空军歼-10C战机打火箭弹</strong></div><div><img src=\"http://pic-bucket.ws.126.net/photo/0001/2019-08-24/ENB95K7O4T8E0001NOS.jpg\" style=\"width:100%\"/></div><p></p><div style=\"margin-top:20px\"><strong>解放军高海拔训练 突击车卡车炮开火</strong></div><div><img src=\"http://pic-bucket.ws.126.net/photo/0001/2019-08-24/ENB7H9QP4T8E0001NOS.jpg\" style=\"width:100%\"/></div><p></p><div style=\"margin-top:20px\"><strong>俄总统专用直升机曝光 用安-124空运</strong></div><div><img src=\"http://pic-bucket.ws.126.net/photo/0001/2019-08-24/ENB72KJP4T8E0001NOS.jpg\" style=\"width:100%\"/></div><p></p>";
 
-        Document doc = Jsoup.parse(html);
-        System.out.println(Jsoup.isValid(html, Whitelist.none()));
+        //Document doc = Jsoup.parse(html);
+        //System.out.println(Jsoup.isValid(html, Whitelist.none()));
 
+      /*  Whitelist whitelist=new Whitelist();  //通过设置白名单留下想要的html标签
+        whitelist.addAttributes("img","src");
+        String docStr = Jsoup.clean(html,whitelist);
+        System.out.println(docStr);*/
+      String tes = "发送消息后和客服回复消息时间间隔的平均值，每个平均响应时长不为零的对话的和的平均值";
+
+        Whitelist whitelist = new Whitelist();
+        whitelist.addAttributes("img", "src");
+        String docStr = Jsoup.clean(html, whitelist);
+        if (StringUtils.contains(docStr, "img")) {
+            String[] docArr = docStr.split("<img ");
+            for (String str : docArr) {
+                if (StringUtils.contains(str, "src")) {
+                    String[] texts = str.split(">");
+                    for (String txt : texts) {
+                        if (StringUtils.contains(txt, "src")) {
+                            String fileUrl = txt.replace("src=", "").replace("\"", "");
+                            String fileName = StringUtils.substringAfterLast(fileUrl, "/");
+                            //发送图片消息
+                            System.out.println("img:" + fileUrl + ":" + fileName);
+                        } else {
+                            System.out.println("text" + txt);
+                        }
+                    }
+                } else {
+                    System.out.println("text:" + str);
+                }
+            }
+        }
+
+        Document doc = Jsoup.parse(html);
         Elements strong = doc.select("div strong");
         strong.forEach(e -> {
             System.out.println("图文的标题是：" + e.text());

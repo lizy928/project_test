@@ -1,0 +1,25 @@
+server:
+  port: 8080
+
+
+#server.port= 80
+
+#spring.redis.host= 106.13.139.156
+#spring.redis.port= 6379
+spring:
+  redis:
+    host: 106.13.139.156
+    port: 6379
+
+  # Elasticsearch客户端配置
+  elasticsearch:
+    host: localhost
+    port: 9200
+    scheme: http
+    socket-timout: 30000
+    connection-timeout: 1500
+    read-timeout: 10000
+    connection-request-timout: 500
+    max-connection-num: 100
+    max-connection-per-route: 100
+    # 使用那个平台环境的ES，0：阿里、1：AWS、2：自建
