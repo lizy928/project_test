@@ -30,12 +30,12 @@ public class WeiBoController {
     /**
      * appkey对应的secret，验证签名时使用。
      */
-    private static String app_secret = "86dac43725c0313bb044dc75fdaa8510";
+    private static String app_secret = "f2e235f47aa5002d1ea8c76e57094f3e";
 
     /**
      * access_token
      */
-    private static String access_token = "2.00XkXboF0Oc3l6a827a7a5a02_NdQB";
+    private static String access_token = "2.00FQyPwH0SE2JUdf9e95270f0f9sZY";
 
     /**
      * 粉丝消息接口
@@ -48,9 +48,9 @@ public class WeiBoController {
     private HttpService httpService;
 
     @RequestMapping("/message")
-    public String devMessage(@RequestParam(defaultValue = "") String signature,
-                             @RequestParam(defaultValue = "") String nonce,
-                             @RequestParam(defaultValue = "") String timestamp,
+    public String devMessage(@RequestParam String signature,
+                             @RequestParam String nonce,
+                             @RequestParam String timestamp,
                              @RequestParam(defaultValue = "") String echostr,
                              @RequestBody(required = false) String msg) throws UnsupportedEncodingException {
 
