@@ -134,4 +134,15 @@ public class HttpService {
         });
     }
 
+    /**
+     * 文件下载
+     *
+     * @param url
+     * @return
+     */
+    public CloseableHttpResponse getFile(String url) throws IOException {
+        HttpGet httpGet = new HttpGet(url);
+        return httpClient.execute(httpGet);
+    }
+
 }
