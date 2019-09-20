@@ -106,17 +106,19 @@
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/it.sauronsoftware/jave -->
-        <dependency>
+       <!-- <dependency>
             <groupId>it.sauronsoftware</groupId>
             <artifactId>jave</artifactId>
             <version>1.0.2</version>
-        </dependency>
+        </dependency>-->
 
+        <!-- https://mvnrepository.com/artifact/com.github.dadiyang/jave -->
         <dependency>
             <groupId>com.github.dadiyang</groupId>
             <artifactId>jave</artifactId>
-            <version>1.0.4</version>
+            <version>1.0.5</version>
         </dependency>
+
 
     </dependencies>
 

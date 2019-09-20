@@ -1,5 +1,7 @@
 package com.dlion.testproject.redis;
 
+import com.dlion.testproject.model.User;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,11 +9,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 /**
  * @author 李正元
@@ -203,15 +203,15 @@ public class StringRedisTemplateTest {
      * key键对应的值value对应的ascii码,在offset的位置(从左向右数)变为value
      */
     @Test
-    public void setBit(){
+    public void setBit() {
 
-        redisTemplate.opsForValue().set("bitTest","a");
+        redisTemplate.opsForValue().set("bitTest", "a");
         // 'a' 的ASCII码是 97。转换为二进制是：01100001
         // 'b' 的ASCII码是 98 转换为二进制是：01100010
         // 'c' 的ASCII码是 99 转换为二进制是：01100011
         //因为二进制只有0和1，在setbit中true为1，false为0，因此我要变为'b'的话第六位设置为1，第七位设置为0
-        redisTemplate.opsForValue().setBit("bitTest",6, true);
-        redisTemplate.opsForValue().setBit("bitTest",7, false);
+        redisTemplate.opsForValue().setBit("bitTest", 6, true);
+        redisTemplate.opsForValue().setBit("bitTest", 7, false);
         System.out.println(redisTemplate.opsForValue().get("bitTest")); //b
     }
 
@@ -219,12 +219,62 @@ public class StringRedisTemplateTest {
      * 获取键对应值的ascii码的在offset处位值
      */
     @Test
-    public void getBit(){
+    public void getBit() {
 
-        System.out.println(redisTemplate.opsForValue().getBit("bitTest",7)); //false
+        System.out.println(redisTemplate.opsForValue().getBit("bitTest", 7)); //false
     }
 
+    @Test
+    public void getTime() {
+        String expire = "1568789014";
+        long CHAT_EXPIRE_TIME_OUT = 60 * 60 * 47;
+        expire = String.valueOf(System.currentTimeMillis() / 1000 + CHAT_EXPIRE_TIME_OUT);
+        if (StringUtils.isEmpty(expire) || Long.valueOf(expire) <= System.currentTimeMillis() / 1000) {
+            System.out.println("访客48小时内未有聊天记录");
+        } else {
+            System.out.println("继续执行了");
+        }
+    }
+
+    @Test
+    public void testSort() {
+
+        User user5 = new User();
+        user5.setId(5);
+        User user = new User();
+        user.setId(1);
+        User user2 = new User();
+        user2.setId(2);
+        User user3 = new User();
+        user3.setId(3);
+        User user4 = new User();
+        user4.setId(4);
 
 
+        List<User> list = new ArrayList<>();
+        list.add(user3);
+        list.add(user);
+        list.add(user4);
+        list.add(user5);
+        list.add(user2);
+        list.add(user2);
+        list.add(user2);
+
+        //Arrays.sort(list, (user1 , user6) -> Integer.compare(user.getId(), ));
+
+        List<User> newList = list.stream().sorted(Comparator.comparing(User::getId))
+                .collect(Collectors.toList());
+
+        System.out.println(newList);
+
+        list.stream().collect(Collectors.collectingAndThen(
+                Collectors.toCollection(() ->
+                        new TreeSet<>(Comparator.comparing(User::getId))
+                ), ArrayList::new)
+        );
+
+        System.out.println(list);
+
+    }
 
 }

@@ -1,6 +1,5 @@
-package com.dlion.testproject;
+package com.dlion.testproject.http;
 
-import com.alibaba.fastjson.JSONObject;
 import com.dlion.testproject.service.HttpService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,9 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
-
-import java.io.IOException;
-import java.util.Map;
 
 /**
  * @author 李正元

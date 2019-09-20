@@ -1,8 +1,8 @@
-package com.dlion.testproject.MediaService;
+package com.dlion.testproject.media;
 
 import com.dlion.testproject.model.WaveHeader;
 import com.dlion.testproject.service.HttpService;
-import it.sauronsoftware.jave.*;
+import it.sauronsoftware.jave.AudioUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
@@ -82,7 +82,7 @@ public class MediaService {
 
                 File target = new File("D:\\1381370093615.mp3");
 
-                AudioAttributes audio = new AudioAttributes();
+              /*  AudioAttributes audio = new AudioAttributes();
                 Encoder encoder = new Encoder();
                 audio.setCodec("libmp3lame");
                 EncodingAttributes attrs = new EncodingAttributes();
@@ -98,7 +98,7 @@ public class MediaService {
                 } catch (EncoderException e) {
                     e.printStackTrace();
                 }
-
+*/
             }
 
         } catch (IOException e) {
@@ -161,8 +161,8 @@ public class MediaService {
     public void test3() {
 
         File source = new File("D://test.amr");
-        File target = new File("D://testAudio.wav");
-        it.sauronsoftware.jave.AudioUtils.amrToWav(source, target);
+        File target = new File("D://testAudio.mp3");
+        AudioUtils.amrToMp3(source, target);
     }
 
     @Test
@@ -172,7 +172,7 @@ public class MediaService {
 
         File target = new File("D://tem/voice/testAudio11.mp3");
 
-        AudioAttributes audio = new AudioAttributes();
+       /* AudioAttributes audio = new AudioAttributes();
         audio.setChannels(new Integer(1));
         audio.setSamplingRate(new Integer(8000));
         EncodingAttributes attrs = new EncodingAttributes();
@@ -187,7 +187,7 @@ public class MediaService {
         }
         System.out.println(source);
         System.out.println(target);
-        System.out.println("secc");
+        System.out.println("secc");*/
 
     }
 
@@ -237,7 +237,7 @@ public class MediaService {
         File source = new File("D://tem/voice/test.amr");
         File target = new File("D://tem/voice/testAudio11.wav");
 
-        AudioAttributes audio = new AudioAttributes();
+       /* AudioAttributes audio = new AudioAttributes();
 
         //设置解码格式，比特率，位数，声道等信息
         audio.setCodec("pcm_s16le");
@@ -260,7 +260,7 @@ public class MediaService {
         }
         System.out.println(source);
         System.out.println(target);
-        System.out.println("secc");
+        System.out.println("secc");*/
 
     }
 
