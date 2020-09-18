@@ -126,18 +126,18 @@ public class CommonTest {
     }
 
     @Test
-    public void test4(){
+    public void test4() {
 
         String str = "sfe";
 
         Optional<Object> cnoObj = Optional.ofNullable(str);
         if (cnoObj.isPresent()) {
-            System.out.println("打印了："+str);
+            System.out.println("打印了：" + str);
         }
     }
 
     @Test
-    public void test5(){
+    public void test5() {
         RobotContent robotContent = new RobotContent();
 
         robotContent.setText("消息+按钮。<a href=\"http://baidu.com\" target=\"_blank\">百度</a> 显示一个图片 <img src=\"https://www.baidu.com/img/bd_logo1.png\" width='100%'><br>消息完毕。");
@@ -188,8 +188,13 @@ public class CommonTest {
     }
 
     @Test
-    public void test6(){
+    public void test6() {
+        //System.out.println(new BCryptPasswordEncoder().encode("life1234@#"));
+    }
 
+    @Test
+    public void test7() {
+        //System.out.println(new BCryptPasswordEncoder().encode("Haph123@#"));
     }
 
 }
