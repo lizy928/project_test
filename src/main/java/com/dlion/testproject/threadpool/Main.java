@@ -24,6 +24,18 @@ import java.util.concurrent.*;
  * 提高线程的可管理性：线程是稀缺资源，如果无限制创建，不仅会消耗系统资源，还会因为线程的不合理分布导致资源调度失衡，降低系统的稳定性。使用线程池可以进行统一的分配、调优和监控。
  * 提供更多更强大的功能：线程池具备可拓展性，允许开发人员向其中增加更多的功能。比如延时定时线程池ScheduledThreadPoolExecutor，就允许任务延期执行或定期执行
  *
+ *
+ * ThreadPoolExecutor 3 个最重要的参数：
+ *
+ * corePoolSize : 核心线程数线程数定义了最小可以同时运行的线程数量。
+ * maximumPoolSize : 当队列中存放的任务达到队列容量的时候，当前可以同时运行的线程数量变为最大线程数。
+ * workQueue: 当新任务来的时候会先判断当前运行的线程数量是否达到核心线程数，如果达到的话，新任务就会被存放在队列中。
+ * ThreadPoolExecutor其他常见参数:
+ * keepAliveTime:当线程池中的线程数量大于 corePoolSize 的时候，如果这时没有新的任务提交，核心线程外的线程不会立即销毁，而是会等待，直到等待的时间超过了 keepAliveTime才会被回收销毁；
+ * unit : keepAliveTime 参数的时间单位。
+ * threadFactory :executor 创建新线程的时候会用到。
+ * handler :饱和策略。关于饱和策略下面单独介绍一下。
+ *
  * @author lzy
  * @date 2020/9/4
  */

@@ -3,8 +3,10 @@ package com.dlion.testproject.thread;
 import java.lang.management.ManagementFactory;
 import java.lang.management.ThreadInfo;
 import java.lang.management.ThreadMXBean;
+import java.util.concurrent.Executors;
 
 /**
+ *
  * 程序计数器私有主要是为了线程切换后能恢复到正确的执行位置
  * <p>
  * 虚拟机栈： 每个 Java 方法在执行的同时会创建一个栈帧用于存储局部变量表、操作数栈、常量池引用等信息。从方法调用直至执行完成的过程，就对应着一个栈帧在 Java 虚拟机栈中入栈和出栈的过程。
@@ -28,5 +30,8 @@ public class MultiThread {
         for (ThreadInfo threadInfo : threadInfos) {
             System.out.println("[" + threadInfo.getThreadId() + "] " + threadInfo.getThreadName());
         }
+        Executors.newScheduledThreadPool(1);
+
+        //ThreadPoolExecutor
     }
 }

@@ -3,7 +3,7 @@ server:
 
 spring:
   redis:
-    host: localhost
+    host: 47.105.165.183
     port: 6379
 
   elasticsearch:
