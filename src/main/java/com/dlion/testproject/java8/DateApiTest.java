@@ -10,13 +10,12 @@ import java.util.Date;
 import java.util.Locale;
 
 /**
- *
  * Clock 类提供了访问当前日期和时间的方法，Clock 是时区敏感的，可以用来取代 System.currentTimeMillis() 来获取当前的微秒数。
  * 某一个特定的时间点也可以使用 Instant 类来表示，Instant 类也可以用来创建旧版本的java.util.Date 对象。
- *
+ * <p>
  * 在新API中时区使用 ZoneId 来表示。时区可以很方便的使用静态方法of来获取到。
  * 抽象类ZoneId（在java.time包中）表示一个区域标识符。 它有一个名为getAvailableZoneIds的静态方法，它返回所有区域标识符。
- *
+ * <p>
  * jdk1.8中新增了 LocalDate 与 LocalDateTime等类来解决日期处理方法，同时引入了一个新的类DateTimeFormatter 来解决日期格式化问题。
  * 可以使用Instant代替 Date，LocalDateTime代替 Calendar，DateTimeFormatter 代替 SimpleDateFormat。
  *
@@ -26,7 +25,7 @@ import java.util.Locale;
 public class DateApiTest {
 
     @Test
-    public void testClock(){
+    public void testClock() {
         Clock clock = Clock.systemDefaultZone();
         long millis = clock.millis();
         //1552379579043
@@ -43,7 +42,7 @@ public class DateApiTest {
      * 在新API中时区使用 ZoneId 来表示。时区可以很方便的使用静态方法of来获取到。 抽象类ZoneId（在java.time包中）表示一个区域标识符。 它有一个名为getAvailableZoneIds的静态方法，它返回所有区域标识符。
      */
     @Test
-    public void testTimezones(){
+    public void testTimezones() {
         //输出所有区域标识符
         System.out.println(ZoneId.getAvailableZoneIds());
 
@@ -74,16 +73,16 @@ public class DateApiTest {
     }
 
     @Test
-    public void testLocalDate(){
+    public void testLocalDate() {
         LocalDate today = LocalDate.now();//获取现在的日期
-        System.out.println("今天的日期: "+today);//2019-03-12
+        System.out.println("今天的日期: " + today);//2019-03-12
         LocalDate tomorrow = today.plus(1, ChronoUnit.DAYS);
-        System.out.println("明天的日期: "+tomorrow);//2019-03-13
+        System.out.println("明天的日期: " + tomorrow);//2019-03-13
         LocalDate yesterday = tomorrow.minusDays(2);
-        System.out.println("昨天的日期: "+yesterday);//2019-03-11
+        System.out.println("昨天的日期: " + yesterday);//2019-03-11
         LocalDate independenceDay = LocalDate.of(2019, Month.MARCH, 12);
         DayOfWeek dayOfWeek = independenceDay.getDayOfWeek();
-        System.out.println("今天是周几:"+dayOfWeek);//TUESDAY
+        System.out.println("今天是周几:" + dayOfWeek);//TUESDAY
 
         String str1 = "2014==04==12 01时06分09秒";
         // 根据需要解析的日期、时间字符串定义解析所用的格式器
@@ -99,13 +98,13 @@ public class DateApiTest {
         LocalDateTime dt2 = LocalDateTime.parse(str2, fomatter2);
         System.out.println(dt2); // 输出 2014-04-13T20:00
 
-        LocalDateTime rightNow=LocalDateTime.now();
-        String date=DateTimeFormatter.ISO_LOCAL_DATE_TIME.format(rightNow);
+        LocalDateTime rightNow = LocalDateTime.now();
+        String date = DateTimeFormatter.ISO_LOCAL_DATE_TIME.format(rightNow);
         System.out.println(date);//2019-03-12T16:26:48.29
-        DateTimeFormatter formatter=DateTimeFormatter.ofPattern("YYYY-MM-dd HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY-MM-dd HH:mm:ss");
         System.out.println(formatter.format(rightNow));//2019-03-12 16:26:48
-    }
 
+    }
 
 
 }
