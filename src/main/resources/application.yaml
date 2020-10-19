@@ -16,7 +16,39 @@ spring:
     connection-request-timout: 500
     max-connection-num: 100
     max-connection-per-route: 100
+
+  kafka:
+    consumer:
+      bootstrap-servers: 47.105.165.183:9092
+      auto-offset-reset: earliest
+      # 事务隔离级别
+      isolation-level: read_committed #仅读取已提交的消息
+    producer:
+      bootstrap-servers: 47.105.165.183:9092
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      # 启用事务
+      transaction-id-prefix: my-tx. # 事务编号前缀
+    bootstrap-servers: 47.105.165.183:9092
+
 #  security:
 #    user:
 #      name: admin
 #      password: 123456
+
+
+
+kafka:
+  topic:
+    my-topic: my-topic
+    my-topic2: my-topic2
+
+  topics:
+    - name: topic1
+      num-partitions: 3
+      replication-factor: 1
+    - name: topic2
+      num-partitions: 1
+      replication-factor: 1
+    - name: topic3
+      num-partitions: 2
+      replication-factor: 1

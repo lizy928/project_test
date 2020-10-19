@@ -25,7 +25,6 @@ public class ClientPermissionInterceptor implements HandlerInterceptor {
 
         if (AnnotatedElementUtils.isAnnotated(method, ChatClintPermission.class)) {
             System.out.println("拦截");
-
         }
 
         return true;
