@@ -1,5 +1,6 @@
 package com.dlion.testproject.collection;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,12 +13,6 @@ import java.util.Map;
  * BlockingQueue: 这是一个接口，JDK 内部通过链表、数组等方式实现了这个接口。表示阻塞队列，非常适合用于作为数据共享的通道。
  * ConcurrentSkipListMap :跳表的实现。这是一个Map，使用跳表的数据结构进行快速查找
  *
- *
- *
- *
- *
- *
- *
  * @author lzy
  * @date 2020/9/4
  */
@@ -29,8 +24,12 @@ public class MapTest {
         map.put(2, "C++");
         map.put(3, "PHP");
 
+
+        ArrayList arrayList = new ArrayList<String>(1);
+        arrayList.size();
         for (Map.Entry<Integer, String> entry : map.entrySet()) {
             System.out.println(entry.getKey() + entry.getValue());
         }
+
     }
 }

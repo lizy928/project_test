@@ -3,6 +3,9 @@ package com.dlion.testproject;
 import org.junit.Test;
 
 import java.util.Objects;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.concurrent.atomic.AtomicStampedReference;
 import java.util.function.Predicate;
 
 /**
@@ -25,9 +28,10 @@ public class JavaTest {
      * 匿名类实现HelloWorld接口
      */
     @Test
-    public void test(){
+    public void test() {
         HelloWorld testHello = new HelloWorld() {
             private String str = "hello world";
+
             @Override
             public void greet() {
                 this.greetSomeone(str);
@@ -44,21 +48,24 @@ public class JavaTest {
         String firstName;
         String lastName;
 
-        Person() {}
+        Person() {
+        }
 
         Person(String firstName, String lastName) {
             this.firstName = firstName;
             this.lastName = lastName;
         }
     }
+
     interface PersonFactory<P extends Person> {
         P create(String firstName, String lastName);
     }
+
     PersonFactory<Person> personFactory = Person::new;
     Person person = personFactory.create("Peter", "Parker");
 
     @Test
-    public void test2(){
+    public void test2() {
         Predicate<String> predicate = (s) -> s.length() > 0;
 
         predicate.test("foo");              // true
@@ -69,6 +76,19 @@ public class JavaTest {
 
         Predicate<String> isEmpty = String::isEmpty;
         Predicate<String> isNotEmpty = isEmpty.negate();
+    }
+
+    @Test
+    public void test3() {
+
+        System.out.println(1 & 2);
+
+        System.out.println(3 | 9);
+
+        System.out.println(6 & 11);
+
+        //ConcurrentHashMap
+
     }
 
 }

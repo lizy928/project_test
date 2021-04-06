@@ -1,5 +1,7 @@
 package com.dlion.testproject.beans;
 
+import org.junit.jupiter.api.Test;
+
 /**
  * 实现*Aware接口 在Bean中使用Spring框架的一些对象
  * 有些时候我们需要在 Bean 的初始化中使用 Spring 框架自身的一些对象来执行一些操作，比如获取 ServletContext 的一些参数，
@@ -19,5 +21,9 @@ package com.dlion.testproject.beans;
  */
 public class Main {
 
+    @Test
+    public void test(){
+
+    }
 
 }

@@ -8,6 +8,7 @@ import org.jsoup.safety.Whitelist;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
@@ -197,6 +198,10 @@ public class CommonTest {
         //System.out.println(new BCryptPasswordEncoder().encode("Haph123@#"));
     }
 
+    @Test
+    public void test8(){
+
+    }
 
 }
 

@@ -2,6 +2,7 @@ package com.dlion.testproject.thread.concurrent.aqs;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.locks.AbstractQueuedSynchronizer;
+import java.util.concurrent.locks.Condition;
 
 /**
  * AQS是一个用来构建锁和同步器的框架，使用AQS能简单且高效地构造出应用广泛的大量的同步器，
@@ -29,7 +30,8 @@ import java.util.concurrent.locks.AbstractQueuedSynchronizer;
  */
 public class main {
     //CountDownLatch
-    //AbstractQueuedSynchronizer
+    //AbstractQueuedSynchronizer;
+    //Condition
 
 
     public static void main(String[] args) {
