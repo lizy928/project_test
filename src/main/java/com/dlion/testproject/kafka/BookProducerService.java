@@ -24,6 +24,7 @@ public class BookProducerService {
         this.kafkaTemplate = kafkaTemplate;
     }
 
+    @Transactional(rollbackFor = Exception.class)
     public void sendMessage(String topic, Object o) {
         //如果我们想在发送的时候带上timestamp（时间戳）、key等信息的话，sendMessage()方法可以这样写：
         // 分区编号最好为 null，交给 kafka 自己去分配

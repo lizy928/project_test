@@ -2,10 +2,13 @@ package com.dlion.testproject;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.atomic.AtomicStampedReference;
+import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 import java.util.function.Predicate;
 
 /**
@@ -90,5 +93,54 @@ public class JavaTest {
         //ConcurrentHashMap
 
     }
+
+    @Test
+    public void test4(){
+        String key = "ab";
+        int h;
+        int hashCode = (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
+        System.out.println(hashCode);
+
+
+        System.out.println(hashCode % 16);
+
+        System.out.println(hashCode & 15);
+    }
+
+    @Test
+    public void test5(){
+        int cap = 9;
+        int n = cap - 1;
+        n |= n >>> 1;
+        n |= n >>> 2;
+        n |= n >>> 4;
+        n |= n >>> 8;
+        n |= n >>> 16;
+        int a = (n < 0) ? 1 : (n >= Integer.MAX_VALUE) ? Integer.MAX_VALUE : n + 1;
+        System.out.println(a);
+    }
+
+    @Test
+    public void test6(){
+        //奇数判断x & 1 = 1偶数判断x & 1 = 0
+        System.out.println(13& 1);
+        System.out.println(12& 1);
+    }
+
+    @Test
+    public void test7(){
+        //取模运算
+        System.out.println(34%3);
+
+        System.out.println(3%2 != 0);
+
+        System.out.println(16>>>16);
+
+        System.out.println(15 +  (15>>1));
+
+
+    }
+
+
 
 }

@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8081
 
 spring:
   redis:
@@ -21,13 +21,13 @@ spring:
     consumer:
       bootstrap-servers: 47.105.165.183:9092
       auto-offset-reset: earliest
-      # ÊÂÎñ¸ôÀë¼¶±ğ
-      isolation-level: read_committed #½ö¶ÁÈ¡ÒÑÌá½»µÄÏûÏ¢
+      # äº‹åŠ¡éš”ç¦»çº§åˆ«
+      isolation-level: read_committed #ä»…è¯»å–å·²æäº¤çš„æ¶ˆæ¯
     producer:
       bootstrap-servers: 47.105.165.183:9092
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-      # ÆôÓÃÊÂÎñ
-      transaction-id-prefix: my-tx. # ÊÂÎñ±àºÅÇ°×º
+      # å¯ç”¨äº‹åŠ¡
+      transaction-id-prefix: my-tx. # äº‹åŠ¡ç¼–å·å‰ç¼€
     bootstrap-servers: 47.105.165.183:9092
 
 #  security:
@@ -52,3 +52,4 @@ kafka:
     - name: topic3
       num-partitions: 2
       replication-factor: 1
+
