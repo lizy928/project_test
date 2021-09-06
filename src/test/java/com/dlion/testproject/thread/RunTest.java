@@ -5,11 +5,15 @@ package com.dlion.testproject.thread;
  * @date 2019-08-31
  */
 
-public class RunTest {
+public class RunTest implements Runnable{
 
 
     public static void main(String[] args) {
 
     }
 
+    @Override
+    public void run() {
+        System.out.println("....");
+    }
 }
