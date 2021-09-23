@@ -6,10 +6,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.atomic.AtomicStampedReference;
 import java.util.concurrent.locks.AbstractQueuedSynchronizer;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.function.Predicate;
+
+import static com.sun.xml.internal.fastinfoset.util.ValueArray.MAXIMUM_CAPACITY;
 
 /**
  * @author lzy
@@ -137,10 +143,62 @@ public class JavaTest {
         System.out.println(16>>>16);
 
         System.out.println(15 +  (15>>1));
-
-
     }
 
+    @Test
+    public void test8() throws InterruptedException {
+        Lock lock = new ReentrantLock();
+        final Condition condition = lock.newCondition();
+        lock.lock();
+        condition.await();
+        condition.signal();
+        lock.unlock();
+        //HashMap
+        //CountDownLatch
+    }
+
+    @Test
+    public void test9(){
+        String a = "0";
+        String b = "a";
+        System.out.println(Objects.hash(a));
+        System.out.println(Objects.hash(b));
+
+        System.out.println(Objects.hash(a) ^ Objects.hash(b));
+    }
+
+    public final int hashCode() {
+       // return Objects.hashCode(key) ^ Objects.hashCode(value);
+        return 0;
+    }
+
+    public static final int hash(Object key) {
+        int h;
+        return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
+    }
+
+    @Test
+    public void test10(){
+        int cap = 9;
+        int n = cap - 1;
+        n |= n >>> 1;
+        n |= n >>> 2;
+        n |= n >>> 4;
+        n |= n >>> 8;
+        n |= n >>> 16;
+        int a =  (n < 0) ? 1 : (n >= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + 1;
+        System.out.println(a);
+    }
+
+    static final int tableSizeFor(int cap) {
+        int n = cap - 1;
+        n |= n >>> 1;
+        n |= n >>> 2;
+        n |= n >>> 4;
+        n |= n >>> 8;
+        n |= n >>> 16;
+        return (n < 0) ? 1 : (n >= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + 1;
+    }
 
 
 }

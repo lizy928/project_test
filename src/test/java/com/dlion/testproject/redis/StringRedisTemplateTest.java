@@ -35,6 +35,7 @@ public class StringRedisTemplateTest {
     @Test
     public void setTimeOut() {
         redisTemplate.opsForValue().set("test2", "2", 100L, TimeUnit.SECONDS);
+        redisTemplate.opsForValue().set("a", "a", 100);
     }
 
     /**
