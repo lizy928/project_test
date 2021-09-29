@@ -32,4 +32,8 @@ public class Person {
 
         System.out.println("eat...");
     }
+
+    private void sys(){
+        System.out.println("say...");
+    }
 }
