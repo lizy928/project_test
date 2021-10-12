@@ -1,41 +1,40 @@
-package com.dlion.testproject.algorithm.thread;
-
-import java.util.concurrent.Semaphore;
+package com.dlion.testproject.algorithm.thread.printinorder;
 
 /**
  * @author lzy
  * @date 2021/10/8
  */
-public class OrderPrint3 {
+public class OrderPrint2 {
+
 
 }
 
-class Foo3 {
+class Foo2 {
 
-    private Semaphore two = new Semaphore(0);
-    private Semaphore three = new Semaphore(0);
-
-    public Foo3() {
+    public Foo2() {
 
     }
-
+    volatile int i = 1;
     public void first(Runnable printFirst) throws InterruptedException {
-
         // printFirst.run() outputs "first". Do not change or remove this line.
         printFirst.run();
-        two.release();
+        i++;
     }
 
     public void second(Runnable printSecond) throws InterruptedException {
-        two.acquire();
+        while(i!=2) {
+        }
         // printSecond.run() outputs "second". Do not change or remove this line.
         printSecond.run();
-        three.release();
+        i++;
     }
 
     public void third(Runnable printThird) throws InterruptedException {
-        three.acquire();
+        while(i!=3) {
+        }
         // printThird.run() outputs "third". Do not change or remove this line.
         printThird.run();
+        i=1;
     }
 }
+

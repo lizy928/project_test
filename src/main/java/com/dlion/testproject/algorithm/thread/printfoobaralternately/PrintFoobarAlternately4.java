@@ -1,11 +1,12 @@
-package com.dlion.testproject.algorithm.thread2;
+package com.dlion.testproject.algorithm.thread.printfoobaralternately;
 
-import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
-public class PrintFoobarAlternately3 {
+public class PrintFoobarAlternately4 {
 
     public static void main(String[] args) {
-        FooBar6 fooBar = new FooBar6(2);//打印10次foo bar
+        FooBar7 fooBar = new FooBar7(2);//打印10次foo bar
         Runnable printFoo = () -> {
             System.out.printf("%s\n", "foo");
         };
@@ -31,37 +32,31 @@ public class PrintFoobarAlternately3 {
     }
 }
 
-class FooBar6 {
+
+class FooBar7 {
     private int n;
+    private BlockingQueue<Integer> fooQueue = new LinkedBlockingQueue<Integer>() {{
+        add(0);
+    }};
+    private BlockingQueue<Integer> barQueue = new LinkedBlockingQueue<>();
 
-    private boolean fooExec = true;
-
-    private final ReentrantLock lock = new ReentrantLock(true);
-
-    public FooBar6(int n) {
+    public FooBar7(int n) {
         this.n = n;
     }
 
     public void foo(Runnable printFoo) throws InterruptedException {
-        for (int i = 0; i < n; ) {
-            lock.lock();
-            if(fooExec){
-                printFoo.run();
-                fooExec = false;
-                i ++;
-            }
-            lock.unlock();
+        for (int i = 0; i < n; i++) {
+            fooQueue.take();
+            printFoo.run();
+            barQueue.add(0);
         }
     }
+
     public void bar(Runnable printBar) throws InterruptedException {
-        for (int i = 0; i < n; ) {
-            lock.lock();
-            if(!fooExec){
-                printBar.run();
-                i ++;
-                fooExec = true;
-            }
-            lock.unlock();
+        for (int i = 0; i < n; i++) {
+            barQueue.take();
+            printBar.run();
+            fooQueue.add(0);
         }
     }
 

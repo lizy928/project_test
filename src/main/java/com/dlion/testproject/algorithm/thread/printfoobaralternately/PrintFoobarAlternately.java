@@ -1,4 +1,4 @@
-package com.dlion.testproject.algorithm.thread2;
+package com.dlion.testproject.algorithm.thread.printfoobaralternately;
 
 
 import java.util.concurrent.BrokenBarrierException;

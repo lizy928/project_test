@@ -1,13 +1,11 @@
-package com.dlion.testproject.algorithm.thread2;
+package com.dlion.testproject.algorithm.thread.printfoobaralternately;
 
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.locks.LockSupport;
+import java.util.concurrent.locks.ReentrantLock;
 
-public class PrintFoobarAlternately6 {
+public class PrintFoobarAlternately3 {
 
     public static void main(String[] args) {
-        FooBar9 fooBar = new FooBar9(2);//打印10次foo bar
+        FooBar6 fooBar = new FooBar6(2);//打印10次foo bar
         Runnable printFoo = () -> {
             System.out.printf("%s\n", "foo");
         };
@@ -33,40 +31,38 @@ public class PrintFoobarAlternately6 {
     }
 }
 
-class FooBar9 {
+class FooBar6 {
     private int n;
 
-    private volatile boolean fooExec = true;
+    private boolean fooExec = true;
 
-    private Map<String, Thread> map = new ConcurrentHashMap<>();
+    private final ReentrantLock lock = new ReentrantLock(true);
 
-    public FooBar9(int n) {
+    public FooBar6(int n) {
         this.n = n;
     }
 
     public void foo(Runnable printFoo) throws InterruptedException {
-        map.put("foo", Thread.currentThread());
-        for (int i = 0; i < n; i++) {
-            while (!fooExec){
-                LockSupport.park();
+        for (int i = 0; i < n; ) {
+            lock.lock();
+            if(fooExec){
+                printFoo.run();
+                fooExec = false;
+                i ++;
             }
-            printFoo.run();
-            fooExec = false;
-            LockSupport.unpark(map.get("bar"));
+            lock.unlock();
         }
     }
-
     public void bar(Runnable printBar) throws InterruptedException {
-        map.put("bar", Thread.currentThread());
-        for (int i = 0; i < n; i++) {
-            while (fooExec){
-                LockSupport.park();
+        for (int i = 0; i < n; ) {
+            lock.lock();
+            if(!fooExec){
+                printBar.run();
+                i ++;
+                fooExec = true;
             }
-            printBar.run();
-            fooExec = true;
-            LockSupport.unpark(map.get("foo"));
+            lock.unlock();
         }
     }
+
 }
-
-

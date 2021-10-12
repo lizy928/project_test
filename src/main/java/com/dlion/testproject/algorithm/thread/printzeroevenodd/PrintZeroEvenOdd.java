@@ -1,4 +1,4 @@
-package com.dlion.testproject.algorithm.thread2.printzeroevenodd;
+package com.dlion.testproject.algorithm.thread.printzeroevenodd;
 
 import java.util.concurrent.Semaphore;
 import java.util.function.IntConsumer;

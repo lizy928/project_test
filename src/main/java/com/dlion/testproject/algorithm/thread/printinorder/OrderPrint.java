@@ -1,4 +1,4 @@
-package com.dlion.testproject.algorithm.thread;
+package com.dlion.testproject.algorithm.thread.printinorder;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
