@@ -7,7 +7,47 @@ import java.util.concurrent.Semaphore;
  * @date 2021/10/8
  */
 public class OrderPrint3 {
+    public static void main(String[] args) {
+        Foo3 foo = new Foo3();
+        new Thread(()->{
+            try {
+                foo.first(new Runnable() {
+                    @Override
+                    public void run() {
+                        System.out.println( Thread.currentThread().getName() + "--->first");
+                    }
+                });
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }, "A").start();
 
+        new Thread(()->{
+            try {
+                foo.second(new Runnable() {
+                    @Override
+                    public void run() {
+                        System.out.println( Thread.currentThread().getName() + "--->second");
+                    }
+                });
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }, "B").start();
+
+        new Thread(()->{
+            try {
+                foo.third(new Runnable() {
+                    @Override
+                    public void run() {
+                        System.out.println( Thread.currentThread().getName() + "--->third");
+                    }
+                });
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }, "C").start();
+    }
 }
 
 class Foo3 {

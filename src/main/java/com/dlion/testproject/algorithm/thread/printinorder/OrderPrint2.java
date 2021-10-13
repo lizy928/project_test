@@ -5,14 +5,52 @@ package com.dlion.testproject.algorithm.thread.printinorder;
  * @date 2021/10/8
  */
 public class OrderPrint2 {
+    public static void main(String[] args) {
+        Foo2 foo = new Foo2();
+        new Thread(()->{
+            try {
+                foo.first(new Runnable() {
+                    @Override
+                    public void run() {
+                        System.out.println( Thread.currentThread().getName() + "--->first");
+                    }
+                });
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }, "A").start();
 
+        new Thread(()->{
+            try {
+                foo.second(new Runnable() {
+                    @Override
+                    public void run() {
+                        System.out.println( Thread.currentThread().getName() + "--->second");
+                    }
+                });
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }, "B").start();
 
+        new Thread(()->{
+            try {
+                foo.third(new Runnable() {
+                    @Override
+                    public void run() {
+                        System.out.println( Thread.currentThread().getName() + "--->third");
+                    }
+                });
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }, "C").start();
+    }
 }
 
 class Foo2 {
 
     public Foo2() {
-
     }
     volatile int i = 1;
     public void first(Runnable printFirst) throws InterruptedException {
