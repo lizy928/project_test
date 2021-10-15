@@ -200,5 +200,12 @@ public class JavaTest {
         return (n < 0) ? 1 : (n >= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + 1;
     }
 
+    @Test
+    public void test11(){
+        Integer i3=128;
+        Integer i4=128;
+        // -128 --- 127
+        System.out.println(i3==i4);//输出false
+    }
 
 }
