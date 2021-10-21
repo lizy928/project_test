@@ -206,6 +206,16 @@ public class JavaTest {
         Integer i4=128;
         // -128 --- 127
         System.out.println(i3==i4);//输出false
+
+        Integer.parseInt("");
+    }
+
+    @Test
+    public void test12(){
+        int a = 11;
+        int b = 2;
+        assert a == 10:"a不等于10";
+        System.out.println("a="+a);
     }
 
 }
