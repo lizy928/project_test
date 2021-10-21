@@ -216,7 +216,9 @@ public class JavaTest {
         assert a == 10:"a不等于10";
         System.out.println("a="+a);
     }
-    public void test12(){
+
+    @Test
+    public void test13(){
 
         Map map = new HashMap();
         Iterator iterator = Collections.emptyIterator();
@@ -224,6 +226,11 @@ public class JavaTest {
         List list = new ArrayList();
         final val iterator1 = list.iterator();
         iterator.next();
+    }
+
+    @Test
+    public void test14(){
+        System.out.println(4%2);
     }
 
 }
