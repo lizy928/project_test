@@ -1,10 +1,9 @@
 package com.dlion.testproject;
 
+import lombok.val;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Objects;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicReference;
@@ -216,6 +215,15 @@ public class JavaTest {
         int b = 2;
         assert a == 10:"a不等于10";
         System.out.println("a="+a);
+    }
+    public void test12(){
+
+        Map map = new HashMap();
+        Iterator iterator = Collections.emptyIterator();
+        final Set set = map.keySet();
+        List list = new ArrayList();
+        final val iterator1 = list.iterator();
+        iterator.next();
     }
 
 }
