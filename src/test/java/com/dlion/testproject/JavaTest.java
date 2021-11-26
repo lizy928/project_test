@@ -4,11 +4,6 @@ import lombok.val;
 import org.junit.Test;
 
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.atomic.AtomicReference;
-import java.util.concurrent.atomic.AtomicStampedReference;
-import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -100,7 +95,7 @@ public class JavaTest {
     }
 
     @Test
-    public void test4(){
+    public void test4() {
         String key = "ab";
         int h;
         int hashCode = (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
@@ -113,7 +108,7 @@ public class JavaTest {
     }
 
     @Test
-    public void test5(){
+    public void test5() {
         int cap = 9;
         int n = cap - 1;
         n |= n >>> 1;
@@ -126,22 +121,22 @@ public class JavaTest {
     }
 
     @Test
-    public void test6(){
+    public void test6() {
         //奇数判断x & 1 = 1偶数判断x & 1 = 0
-        System.out.println(13& 1);
-        System.out.println(12& 1);
+        System.out.println(13 & 1);
+        System.out.println(12 & 1);
     }
 
     @Test
-    public void test7(){
+    public void test7() {
         //取模运算
-        System.out.println(34%3);
+        System.out.println(34 % 3);
 
-        System.out.println(3%2 != 0);
+        System.out.println(3 % 2 != 0);
 
-        System.out.println(16>>>16);
+        System.out.println(16 >>> 16);
 
-        System.out.println(15 +  (15>>1));
+        System.out.println(15 + (15 >> 1));
     }
 
     @Test
@@ -157,7 +152,7 @@ public class JavaTest {
     }
 
     @Test
-    public void test9(){
+    public void test9() {
         String a = "0";
         String b = "a";
         System.out.println(Objects.hash(a));
@@ -167,7 +162,7 @@ public class JavaTest {
     }
 
     public final int hashCode() {
-       // return Objects.hashCode(key) ^ Objects.hashCode(value);
+        // return Objects.hashCode(key) ^ Objects.hashCode(value);
         return 0;
     }
 
@@ -177,7 +172,7 @@ public class JavaTest {
     }
 
     @Test
-    public void test10(){
+    public void test10() {
         int cap = 9;
         int n = cap - 1;
         n |= n >>> 1;
@@ -185,7 +180,7 @@ public class JavaTest {
         n |= n >>> 4;
         n |= n >>> 8;
         n |= n >>> 16;
-        int a =  (n < 0) ? 1 : (n >= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + 1;
+        int a = (n < 0) ? 1 : (n >= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + 1;
         System.out.println(a);
     }
 
@@ -200,25 +195,25 @@ public class JavaTest {
     }
 
     @Test
-    public void test11(){
-        Integer i3=128;
-        Integer i4=128;
+    public void test11() {
+        Integer i3 = 128;
+        Integer i4 = 128;
         // -128 --- 127
-        System.out.println(i3==i4);//输出false
+        System.out.println(i3 == i4);//输出false
 
         Integer.parseInt("");
     }
 
     @Test
-    public void test12(){
+    public void test12() {
         int a = 11;
         int b = 2;
-        assert a == 10:"a不等于10";
-        System.out.println("a="+a);
+        assert a == 10 : "a不等于10";
+        System.out.println("a=" + a);
     }
 
     @Test
-    public void test13(){
+    public void test13() {
 
         Map map = new HashMap();
         Iterator iterator = Collections.emptyIterator();
@@ -229,8 +224,44 @@ public class JavaTest {
     }
 
     @Test
-    public void test14(){
-        System.out.println(4%2);
+    public void test14() {
+        System.out.println(4 % 2);
+    }
+
+    @Test
+    public void test15() {
+        int count = 0;
+        int n = 100;
+        int num = 1;
+        while (num <= n) {
+            num = 2 * num;
+            count++;
+        }
+        System.out.println(count);
+    }
+
+    @Test
+    public void test16() {
+        int n = 100;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; i++) {
+                // ...
+            }
+        }
+    }
+
+    @Test
+    /**
+     *  奇偶树判断
+     */
+    public void test17(){
+        System.out.println(4 & 1);
+        System.out.println(5 & 1);
+    }
+
+    @Test
+    public void test18(){
+        System.out.println(14>>>2);
     }
 
 }
