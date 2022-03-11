@@ -18,6 +18,12 @@ public class Test {
 
         //DateTimeFormatter
 
+        test();
 
+    }
+
+    public static void test(){
+        String s = threadLocal.get();
+        System.out.println(s);
     }
 }

@@ -1,6 +1,9 @@
 package com.dlion.testproject;
 
+import com.dlion.testproject.model.User;
 import lombok.val;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.kafka.common.protocol.types.Field;
 import org.junit.Test;
 
 import java.util.*;
@@ -262,6 +265,64 @@ public class JavaTest {
     @Test
     public void test18(){
         System.out.println(14>>>2);
+    }
+
+    @Test
+    public void test19(){
+        System.out.println("20211224104907831_1640314147831SCVCKM100".length());
+    }
+
+    @Test
+    public void test20(){
+
+        Map<String, Integer> count = new HashMap<>();
+        Map<String, Object> params = new LinkedHashMap<>();
+
+        String a = "1";
+        String b = "2";
+        String c = "3";
+        User user = new User();
+        user.setName("test");
+
+
+        String[] paramTypes = {a.getClass().getName(), b.getClass().getName(), c.getClass().getName(), user.getClass().getName(), user.getClass().getName()};
+        Object[] args = {"1", "2", "2", user, user};
+
+        for (int i = 0; i < paramTypes.length; i++) {
+            String type = paramTypes[i];
+            Object val = args[i];
+            int num;
+            if(count.containsKey(type)){
+                num = count.get(type);
+                num ++;
+            } else {
+                num = 1;
+            }
+            count.put(type, num);
+            type = type + "|" + num;
+            params.put(type, val);
+        }
+
+        System.out.println(params);
+    }
+
+    @Test
+    public void test21(){
+        String a = "java.lang.String|1";
+
+        a= StringUtils.substringBefore(a, "|");
+
+        System.out.println(a);
+    }
+
+
+    @Test
+    public void test22(){
+        // 客户应该缴纳的
+        double a = 1468.95 * 2 + 1468.95 / 30 * 6;
+        // 客户总缴纳的房租
+        double sum = 3936.9;
+        System.out.println(sum - a);
     }
 
 }
